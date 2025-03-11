@@ -18,21 +18,97 @@
     </div>
 </header>
 
-<div name="player-char-and-tables-choice-part">
-    <p name="playerchar-heading">Player characters</p>
+<div name="player-char-and-gen-settings-part">
 
-    <>
+    <div name="player-adder-container">
+        <p name="playerchar-heading">Player Characters</p>
 
-    <div name="addchar-btn-container">
-        <button name="add-char-btn">+</button>
-        <p>Add character</p>
+        <div name="player-instance-container">
+            <label>Level</label>
+            <select name="player-level-select">
+                <option>1</option>
+                <option>2</option>
+                <option>...</option>
+                <option>20</option>
+            </select>
+            <button name="remove-char-btn">-</button>
+        </div>
+
+        <div name="addchar-btn-container">
+            <button name="add-char-btn">+</button>
+            <label>Add character</label>
+        </div>
+
     </div>
+
+<div name="dummyONLY-separatorline">---</div>
+
+    <div name="generation-settings-container">
+        <p name="generation-settings-heading">Generation Settings</p>
+
+        <div name="monster-tactics">
+            <input type="checkbox"/>
+            <label>Monster tactics</label>
+        </div>
+
+        <div name="monster-loot">
+            <input type="checkbox"/>
+            <label>Monster loot</label>
+        </div>
+
+        <div name="monster-activities">
+            <input type="checkbox"/>
+            <label>Monster activities</label>
+        </div>
+
+
+    </div>
+
 </div>
 
-<div name="filter-part"></div>
-<div name="result-part"></div>
+<!-- vertical separation line-->
 
-<footer>2025 NaUKMA IT faculty</footer>
+<div name="filter-part">
+    <p name="filters-heading">Filters</p>
+
+    <!--data will need to be pulled up from database-->
+    <div name="filter-instance-container">
+        <label name="filter-name">INSERT filter name | </label>
+        <label name="amount">INSERT amount | </label>
+        <button name="remove-filter-btn">-</button>
+    </div>
+
+    <div name="addfilter-btn-container">
+        <button name="add-filter-btn">+</button>
+        <label>Add filter</label>
+    </div>
+
+</div>
+
+<!-- vertical separation line-->
+
+<div name="result-part">
+    <button name="generate-btn">Generate Encounter</button>
+
+    <div name="list-of-monsters-container">
+        <label name="list-of-monsters">List of monsters: </label>
+    </div>
+
+    <div name="encounter-diff-container">
+        <label name="encounter-diff">Encounter difficulty: </label>
+    </div>
+
+
+    <div name="dummyONLY-separatorline">---</div>
+
+    <div name="dummyONLY-separatorline">---</div>
+
+</div>
+
+
+<footer>
+    <p>2025 NaUKMA IT faculty</p>
+</footer>
 
 </body>
 </html>
