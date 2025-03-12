@@ -91,15 +91,42 @@
     <button name="generate-btn">Generate Encounter</button>
 
     <div name="list-of-monsters-container">
-        <label name="list-of-monsters">List of monsters: </label>
+        <label>List of monsters: </label>
+        <label name="list-of-monsters">...</label> <!--Info needs to be pulled up from db-->
     </div>
 
     <div name="encounter-diff-container">
-        <label name="encounter-diff">Encounter difficulty: </label>
+        <label>Encounter difficulty: </label>
+        <label name="encounter-diff">...</label> <!--Info needs to be pulled up from db-->
     </div>
 
 
     <div name="dummyONLY-separatorline">---</div>
+
+    <table name="monsters-table">
+        <thead name="monster-table-head">
+            <tr>
+                <th scope="col">Name</th>
+                <th scope="col">Size</th>
+                <th scope="col">Type</th>
+                <th scope="col">Habitat</th>
+                <th scope="col">Legendary</th>
+                <th scope="col">Lair</th>
+                <th scope="col">Spellcaster</th>
+            </tr>
+        </thead>
+        <tbody name="monster-table-body">
+            <tr>
+                <td>Monster1</td> <!--pull up from bd-->
+                <td>Medium</td> <!--pull up from bd-->
+                <td>Beast</td> <!--pull up from bd-->
+                <td>Swamp</td> <!--pull up from bd-->
+                <td>No</td> <!--replace with tick icons?-->
+                <td>No</td> <!--replace with tick icons?-->
+                <td>No</td> <!--replace with tick icons?-->
+            </tr>
+        </tbody>
+    </table>
 
     <div name="dummyONLY-separatorline">---</div>
 
