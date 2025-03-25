@@ -1,19 +1,20 @@
 import { useContext } from "react";
 import Filter from "./Filter.tsx";
+import FilterContext from "../contexts/FilterContext.ts";
 
 export default function FiltersSection() {
 
-    const {  } = useContext()
+    const { filters } = useContext(FilterContext)
 
     return (
         <>
             {
-                filters.map((filter) => (
+                filters?.map((filter, i) => (
                     <Filter
-                        key={filter.field}
-                        field={filter.field}
+                        key={i}
+                        field={filter.type}
                         value={filter.value}
-                        description={filter.description}
+                        quantity={filter.quantity ? filter.quantity : 0}
                     />
                 ))
             }

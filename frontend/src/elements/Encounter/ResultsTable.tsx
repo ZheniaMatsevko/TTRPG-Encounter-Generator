@@ -1,13 +1,10 @@
-import { useContext } from "react";
 
 
 export default function ResultsTable() {
 
- const {  } = useContext()
-
 return (
 
-<div className="result-part">
+<div className="result-part p-4">
     {/* GENERATE ENCOUNTER button*/}
     <button>Generate Encounter</button>
     {/*The statistics*/}
@@ -46,4 +43,4 @@ return (
   </div>
   )
 
-  }
+}

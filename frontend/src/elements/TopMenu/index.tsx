@@ -8,11 +8,10 @@ type HeaderProps = {
 export default function TopMenu() {
 
     return (
-        <div>
             <nav className='flex flex-auto flex-row justify-between align-middle
             w-full h-fit p-4 mb-4
             text-2xl
-            border-b-2 backdrop-blur border-black
+            border-b-2 backdrop-blur
             '>
                 <Logo path='/encounter' text='ENCOUNTER GENERATOR'/>
                 <div className='flex flex-wrap justify-evenly w-1/2 h-fit'>
@@ -22,7 +21,6 @@ export default function TopMenu() {
                     <Header path='/credits' text='Credits'/>
                 </div>
             </nav>
-        </div>
 
     )
 
@@ -31,7 +29,12 @@ export default function TopMenu() {
 function Header({path, text}: HeaderProps) {
     return (
         <Link to={path}
-              className='flex w-fit font-["EB_Garamond"] text-[#262626] transition delay-50 duration-300 ease-in-out h-fit hover:scale-110'>
+              className='
+              flex w-fit font-["EB_Garamond"] text-[#262626]
+              transition delay-50 duration-300 ease-in-out h-fit
+              hover:scale-110
+              dark:text-white
+              '>
             <h2>
                 {text}
             </h2>
@@ -42,7 +45,7 @@ function Header({path, text}: HeaderProps) {
 function Logo({path, text}: HeaderProps) {
     return (
         <Link to={path} className='flex font-["Montserrat"] text-[#262626] font-extrabold h-fit'>
-            <h2 className='text-[#262626]'>
+            <h2 className='text-[#262626] dark:text-white'>
                 {text}
             </h2>
         </Link>

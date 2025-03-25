@@ -1,5 +1,5 @@
+import ResultsTable from "../../elements/Encounter/ResultsTable.tsx";
 import FiltersSection from "../../elements/Encounter/FiltersSection.tsx";
-import FiltersSection from "../../elements/Encounter/ResultsTable.tsx";
 
 export default function Generator() {
     return (
@@ -44,7 +44,7 @@ export default function Generator() {
             <div className="w-1/4 border-r-1">
                 <FiltersSection/>
                 {/*add filter button*/}
-                <div className="addfilter-btn-container">
+                <div className="addfilter-btn-container p-4">
                    <button>+</button>
                    <label>Add filter</label>
                 </div>
