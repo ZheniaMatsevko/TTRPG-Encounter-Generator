@@ -1,5 +1,6 @@
 package com.example.backend.dto;
 
+import com.example.backend.entity.enums.Habitat;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.Size;
 import lombok.*;
@@ -33,7 +34,9 @@ public class MonsterDto {
 
     private String source;
 
-    @ToString.Exclude
-    @EqualsAndHashCode.Exclude
-    private List<FilterDto> filters;
+    private boolean isLegendary;
+    private boolean isLair;
+    private boolean isSpellcaster;
+
+    private List<Habitat> habitats;
 }

@@ -1,5 +1,6 @@
 package com.example.backend.entity;
 
+import com.example.backend.entity.enums.Habitat;
 import jakarta.persistence.*;
 import lombok.*;
 
@@ -33,16 +34,15 @@ public class MonsterEntity {
     @Column(nullable = false)
     private float cr;
 
+    private boolean isLegendary;
+    private boolean isLair;
+    private boolean isSpellcaster;
+
     private String source;
 
-    @EqualsAndHashCode.Exclude
-    @ToString.Exclude
-    @ManyToMany(fetch = FetchType.EAGER, cascade = { CascadeType.PERSIST, CascadeType.MERGE })
-    @JoinTable(name = "monster_filters",
-            joinColumns = @JoinColumn(name = "monster_id", nullable = false),
-            inverseJoinColumns = @JoinColumn(name = "filter_id", nullable = false),
-            uniqueConstraints = @UniqueConstraint(columnNames = {"monster_id", "filter_id"})
-    )
-    private List<FilterEntity> filters;
-
+    @ElementCollection(targetClass = Habitat.class)
+    @JoinTable(name = "monster_habitat", joinColumns = @JoinColumn(name = "monster_id"))
+    @Column(name = "habitat", nullable = false)
+    @Enumerated(EnumType.STRING)
+    private List<Habitat> habitats;
 }

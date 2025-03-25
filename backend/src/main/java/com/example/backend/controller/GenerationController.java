@@ -1,6 +1,6 @@
 package com.example.backend.controller;
 
-import com.example.backend.service.IFilterService;
+import com.example.backend.service.IGenerationService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.HttpStatus;
@@ -11,10 +11,10 @@ import org.springframework.web.bind.annotation.RestController;
 
 @Slf4j
 @RestController
-@RequestMapping("/filter")
+@RequestMapping("/generate")
 @RequiredArgsConstructor
-public class FilterController {
-    private final IFilterService filterService;
+public class GenerationController {
+    private final IGenerationService generationService;
 
     @ExceptionHandler(Exception.class)
     public ResponseEntity<String> handleException(Exception e) {

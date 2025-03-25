@@ -13,7 +13,7 @@ import org.springframework.web.bind.annotation.RestController;
 @RestController
 @RequestMapping("/loots")
 @RequiredArgsConstructor
-public class LootControlelr {
+public class LootController {
     private final ILootService lootService;
 
     @ExceptionHandler(Exception.class)
