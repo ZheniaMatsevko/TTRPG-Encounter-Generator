@@ -34,9 +34,9 @@ public class MonsterEntity {
     @Column(nullable = false)
     private float cr;
 
-    private boolean isLegendary;
-    private boolean isLair;
-    private boolean isSpellcaster;
+    private boolean legendary;
+    private boolean lair;
+    private boolean spellcaster;
 
     private String source;
 

@@ -34,9 +34,9 @@ public class MonsterDto {
 
     private String source;
 
-    private boolean isLegendary;
-    private boolean isLair;
-    private boolean isSpellcaster;
+    private boolean legendary;
+    private boolean lair;
+    private boolean spellcaster;
 
     private List<Habitat> habitats;
 }
