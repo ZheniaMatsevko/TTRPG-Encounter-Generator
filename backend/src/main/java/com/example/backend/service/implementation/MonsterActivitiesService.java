@@ -7,6 +7,8 @@ import com.example.backend.repository.IMonsterActivitiesRepository;
 import com.example.backend.service.IMonsterActivitiesService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -32,6 +34,10 @@ public class MonsterActivitiesService implements IMonsterActivitiesService {
 
     @Override
     public List<MonsterActivitiesDto> getMonsterActivitiesForEncounter(int numberOfActivities) {
-        return null;
+        Pageable pageable = PageRequest.of(0, numberOfActivities);
+        List<MonsterActivitiesEntity> randomActivities = monsterActivitiesRepository.findRandomActivities(pageable);
+        return randomActivities.stream()
+                .map(IMonsterActivitiesMapper.INSTANCE::entityToDto)
+                .toList();
     }
 }

@@ -96,6 +96,12 @@ public class MonsterController {
         return monsterTacticsService.getAllMonsterTactics();
     }
 
+    @GetMapping("/tactics/random")
+    public List<MonsterTacticsDto> getRandomTactics(@RequestParam int numberOfTactics) {
+        log.info("Getting random tactics, number of tactics: {}", numberOfTactics);
+        return monsterTacticsService.getMonsterTacticsForEncounter(numberOfTactics);
+    }
+
     @PostMapping("/activities")
     public MonsterActivitiesDto createMonster(@RequestBody @Valid MonsterActivitiesDto monsterActivitiesDto, BindingResult bindingResult) {
         if (bindingResult.hasErrors()) {
@@ -128,6 +134,12 @@ public class MonsterController {
     public List<MonsterActivitiesDto> getAllMonsterActivities() {
         log.info("Getting all monster activities");
         return monsterActivitiesService.getAllMonsterActivities();
+    }
+
+    @GetMapping("/activities/random")
+    public List<MonsterActivitiesDto> getRandomActivities(@RequestParam int numberOfActivities) {
+        log.info("Getting random activities, number of tactics: {}", numberOfActivities);
+        return monsterActivitiesService.getMonsterActivitiesForEncounter(numberOfActivities);
     }
 
     @ExceptionHandler(Exception.class)
