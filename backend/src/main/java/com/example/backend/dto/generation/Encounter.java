@@ -10,12 +10,13 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import java.util.List;
+import java.util.Map;
 
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
 public class Encounter {
-    private List<MonsterDto> monsters;
+    private Map<MonsterDto, Integer> monstersWithCounts;
     private EncounterDifficulty difficulty;
     private List<MonsterTacticsDto> tactics;
     private List<MonsterActivitiesDto> activities;
