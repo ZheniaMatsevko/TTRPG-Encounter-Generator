@@ -4,7 +4,9 @@ import com.example.backend.dto.MonsterActivitiesDto;
 import com.example.backend.dto.MonsterDto;
 import com.example.backend.dto.MonsterTacticsDto;
 import com.example.backend.exceptions.ExceptionHelper;
+import com.example.backend.service.IMonsterActivitiesService;
 import com.example.backend.service.IMonsterService;
+import com.example.backend.service.IMonsterTacticsService;
 import jakarta.validation.ValidationException;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -23,6 +25,8 @@ import java.util.List;
 @RequiredArgsConstructor
 public class MonsterController {
     private final IMonsterService monsterService;
+    private final IMonsterTacticsService monsterTacticsService;
+    private final IMonsterActivitiesService monsterActivitiesService;
 
     @PostMapping
     public MonsterDto createMonster(@RequestBody @Valid MonsterDto monsterDto, BindingResult bindingResult) {
@@ -64,7 +68,7 @@ public class MonsterController {
             String message = ExceptionHelper.formErrorMessage(bindingResult);
             throw new ValidationException(message);
         }
-        MonsterTacticsDto monsterTactics = monsterService.createMonsterTactics(monsterTacticsDto);
+        MonsterTacticsDto monsterTactics = monsterTacticsService.createMonsterTactics(monsterTacticsDto);
         log.info("Monster tactics created with ID: {}", monsterTactics.getId());
         return monsterTactics;
     }
@@ -78,7 +82,7 @@ public class MonsterController {
 
         List<MonsterTacticsDto> createdTactics = new ArrayList<>();
         for (MonsterTacticsDto tactic : monsterTacticsDtos) {
-            MonsterTacticsDto monsterTacticsDto = monsterService.createMonsterTactics(tactic);
+            MonsterTacticsDto monsterTacticsDto = monsterTacticsService.createMonsterTactics(tactic);
             log.info("Tactic created with ID: {}", monsterTacticsDto.getId());
             createdTactics.add(monsterTacticsDto);
         }
@@ -89,7 +93,7 @@ public class MonsterController {
     @GetMapping("/tactics")
     public List<MonsterTacticsDto> getAllMonsterTactics() {
         log.info("Getting all monster tactics");
-        return monsterService.getAllMonsterTactics();
+        return monsterTacticsService.getAllMonsterTactics();
     }
 
     @PostMapping("/activities")
@@ -98,7 +102,7 @@ public class MonsterController {
             String message = ExceptionHelper.formErrorMessage(bindingResult);
             throw new ValidationException(message);
         }
-        MonsterActivitiesDto monsterActivities = monsterService.createMonsterActivities(monsterActivitiesDto);
+        MonsterActivitiesDto monsterActivities = monsterActivitiesService.createMonsterActivities(monsterActivitiesDto);
         log.info("Monster activities created with ID: {}", monsterActivities.getId());
         return monsterActivities;
     }
@@ -112,7 +116,7 @@ public class MonsterController {
 
         List<MonsterActivitiesDto> createdTactics = new ArrayList<>();
         for (MonsterActivitiesDto monsterActivitiesDto : monsterActivitiesDtos) {
-            MonsterActivitiesDto createdActivity = monsterService.createMonsterActivities(monsterActivitiesDto);
+            MonsterActivitiesDto createdActivity = monsterActivitiesService.createMonsterActivities(monsterActivitiesDto);
             log.info("Activity created with ID: {}", createdActivity.getId());
             createdTactics.add(createdActivity);
         }
@@ -123,7 +127,7 @@ public class MonsterController {
     @GetMapping("/activities")
     public List<MonsterActivitiesDto> getAllMonsterActivities() {
         log.info("Getting all monster activities");
-        return monsterService.getAllMonsterActivities();
+        return monsterActivitiesService.getAllMonsterActivities();
     }
 
     @ExceptionHandler(Exception.class)
