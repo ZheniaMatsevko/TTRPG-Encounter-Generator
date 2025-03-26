@@ -138,7 +138,7 @@ public class MonsterController {
 
     @GetMapping("/activities/random")
     public List<MonsterActivitiesDto> getRandomActivities(@RequestParam int numberOfActivities) {
-        log.info("Getting random activities, number of tactics: {}", numberOfActivities);
+        log.info("Getting random activities, number of activities: {}", numberOfActivities);
         return monsterActivitiesService.getMonsterActivitiesForEncounter(numberOfActivities);
     }
 
