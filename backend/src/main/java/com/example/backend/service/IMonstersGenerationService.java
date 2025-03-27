@@ -8,4 +8,6 @@ import java.util.Map;
 
 public interface IMonstersGenerationService {
     Map<MonsterDto, Integer> getMonstersByFilters(List<FilterParam> params, int numberOfMonsters);
+    Map<MonsterDto, Integer> generateForNoFilters(int numberOfMonsters);
+    MonsterDto getRandomMonster();
 }
