@@ -1,8 +1,10 @@
 package com.example.backend.entity;
 
-import com.example.backend.entity.enums.Habitat;
+import com.example.backend.entity.enums.*;
 import jakarta.persistence.*;
-import lombok.*;
+import lombok.AllArgsConstructor;
+import lombok.Data;
+import lombok.NoArgsConstructor;
 
 import java.util.List;
 
@@ -19,17 +21,14 @@ public class MonsterEntity {
     @Column(nullable = false)
     private String name;
 
-    @Column(nullable = false, length = 20)
-    private String size;
+    @Column(nullable = false)
+    private Size size;
 
-    @Column(nullable = false, length = 50)
-    private String type;
+    @Column(nullable = false)
+    private Type type;
 
-    @Column(length = 50)
-    private String tag;
-
-    @Column(length = 20)
-    private String alignment;
+    private Tag tag;
+    private Alignment alignment;
 
     @Column(nullable = false)
     private float cr;
@@ -37,8 +36,6 @@ public class MonsterEntity {
     private boolean legendary;
     private boolean lair;
     private boolean spellcaster;
-
-    private String source;
 
     @ElementCollection(targetClass = Habitat.class)
     @JoinTable(name = "monster_habitat", joinColumns = @JoinColumn(name = "monster_id"))

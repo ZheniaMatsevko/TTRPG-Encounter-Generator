@@ -1,8 +1,7 @@
 package com.example.backend.dto;
 
-import com.example.backend.entity.enums.Habitat;
+import com.example.backend.entity.enums.*;
 import jakarta.validation.constraints.NotBlank;
-import jakarta.validation.constraints.Size;
 import lombok.*;
 
 import java.util.List;
@@ -17,22 +16,16 @@ public class MonsterDto {
     private String name;
 
     @NotBlank
-    @Size(max = 20, message = "Monster size length must be less than 20 characters")
-    private String size;
+    private Size size;
 
     @NotBlank
-    @Size(max = 50, message = "Monster type length must be less than 50 characters")
-    private String type;
+    private Type type;
 
-    @Size(max = 50, message = "Monster tag length must be less than 50 characters")
-    private String tag;
+    private Tag tag;
 
-    @Size(max = 20, message = "Monster alignment length must be less than 20 characters")
-    private String alignment;
+    private Alignment alignment;
 
     private float cr;
-
-    private String source;
 
     private boolean legendary;
     private boolean lair;
