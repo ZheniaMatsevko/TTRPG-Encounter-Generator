@@ -14,5 +14,6 @@ public enum Type {
     MONSTROSITY,
     OOZE,
     PLANT,
-    UNDEAD
+    UNDEAD,
+    OTHER
 }
