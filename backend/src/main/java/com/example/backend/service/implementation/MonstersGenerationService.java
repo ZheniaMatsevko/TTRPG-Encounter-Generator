@@ -54,7 +54,9 @@ public class MonstersGenerationService implements IMonstersGenerationService {
     }
 
     private Map<MonsterDto, Integer> generateScenario0(int numberOfMonsters) {
-        MonsterDto monster = IMonsterMapper.INSTANCE.entityToDto(monsterRepository.findRandomMonsterBySize(Size.SMALL));
+        List<MonsterEntity> monsters = monsterRepository.findRandomMonstersBySize(Size.SMALL);
+        MonsterEntity monsterEntity= monsters.isEmpty() ? null : monsters.get(random.nextInt(monsters.size()));
+        MonsterDto monster = IMonsterMapper.INSTANCE.entityToDto(monsterEntity);
         int finalNumberOfMonsters = (numberOfMonsters > 0) ? numberOfMonsters : 10;
 
         return Map.of(monster, finalNumberOfMonsters);

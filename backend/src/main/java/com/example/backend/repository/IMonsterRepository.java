@@ -14,7 +14,7 @@ import java.util.List;
 @Repository
 public interface IMonsterRepository extends JpaRepository<MonsterEntity, Long> {
     @Query("SELECT m FROM MonsterEntity m WHERE m.size = :size ORDER BY RANDOM()")
-    MonsterEntity findRandomMonsterBySize(@Param("size") Size size);
+    List<MonsterEntity> findRandomMonstersBySize(@Param("size") Size size);
 
     @Query("SELECT m FROM MonsterEntity m ORDER BY RANDOM()")
     MonsterEntity findRandomMonster();
