@@ -6,6 +6,7 @@ import com.example.backend.dto.MonsterTacticsDto;
 import com.example.backend.dto.enums.EncounterDifficulty;
 import com.example.backend.dto.generation.Encounter;
 import com.example.backend.dto.generation.GenerationFilter;
+import com.example.backend.dto.generation.MonsterWithCountDto;
 import com.example.backend.entity.enums.Type;
 import com.example.backend.service.*;
 import lombok.RequiredArgsConstructor;
@@ -46,7 +47,11 @@ public class EncounterGenerationService implements IEncounterGenerationService {
                     generationFilter.getNumberOfMonsters());
         }
 
-        encounter.setMonstersWithCounts(generatedMonstersToCount);
+        List<MonsterWithCountDto> monsterList = generatedMonstersToCount.entrySet().stream()
+                .map(entry -> new MonsterWithCountDto(entry.getKey(), entry.getValue()))
+                .toList();
+
+        encounter.setMonstersWithCounts(monsterList);
 
         if (generationFilter.getCharactersLevels() != null && !generationFilter.getCharactersLevels().isEmpty()) {
             int numberOfMonsters = generatedMonstersToCount.values().stream().mapToInt(Integer::intValue).sum();
@@ -74,7 +79,7 @@ public class EncounterGenerationService implements IEncounterGenerationService {
         return encounter;
     }
 
-    private int countDifferentTypesOfMonsters(List<MonsterDto> monsters){
+    private int countDifferentTypesOfMonsters(List<MonsterDto> monsters) {
         Set<Type> uniqueTypes = monsters.stream()
                 .map(MonsterDto::getType)
                 .collect(Collectors.toSet());
