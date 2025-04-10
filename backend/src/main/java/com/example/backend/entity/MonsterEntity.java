@@ -42,4 +42,16 @@ public class MonsterEntity {
     @Column(name = "habitat", nullable = false)
     @Enumerated(EnumType.STRING)
     private List<Habitat> habitats;
+
+    @ElementCollection(targetClass = Habitat.class)
+    @JoinTable(name = "monster_tactics", joinColumns = @JoinColumn(name = "monster_id"))
+    @Column(name = "tactics", nullable = false)
+    @Enumerated(EnumType.STRING)
+    private List<Habitat> tactics;
+
+    @ElementCollection(targetClass = Habitat.class)
+    @JoinTable(name = "monster_activities", joinColumns = @JoinColumn(name = "monster_id"))
+    @Column(name = "activities", nullable = false)
+    @Enumerated(EnumType.STRING)
+    private List<Habitat> activities;
 }
