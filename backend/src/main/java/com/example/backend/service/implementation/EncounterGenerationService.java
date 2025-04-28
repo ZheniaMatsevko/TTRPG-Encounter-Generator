@@ -54,7 +54,8 @@ public class EncounterGenerationService implements IEncounterGenerationService {
         encounter.setMonstersWithCounts(monsterList);
 
         if (generationFilter.getCharactersLevels() != null && !generationFilter.getCharactersLevels().isEmpty()) {
-            int numberOfMonsters = generatedMonstersToCount.values().stream().mapToInt(Integer::intValue).sum();
+            int numberOfMonsters = presetNumberOfMonsters != 0 ? presetNumberOfMonsters : generatedMonstersToCount.values().stream().mapToInt(Integer::intValue).sum();
+            System.out.println(numberOfMonsters);
 
             EncounterDifficulty encounterDifficulty = encounterDifficultyService.calculateEncounterDifficulty(generationFilter.getCharactersLevels(),
                     generatedMonstersToCount, numberOfMonsters);

@@ -28,13 +28,14 @@ public class EncounterDifficultyService implements IEncounterDifficultyService {
         int totalMonstersXp = this.calculateTotalMonsterXP(monstersXPToCount, totalNumberOfMonsters);
         Map<EncounterDifficulty, Integer> partyDifficultyLimits = this.getPartyDifficultyLimits(userLevels);
 
+        EncounterDifficulty max = EncounterDifficulty.EASY;
         for (EncounterDifficulty difficulty : EncounterDifficulty.values()) {
             if (partyDifficultyLimits.get(difficulty) <= totalMonstersXp) {
-                return difficulty;
+                max = difficulty;
             }
         }
 
-        return EncounterDifficulty.EASY;
+        return max;
     }
 
     private Map<EncounterDifficulty, Integer> getPartyDifficultyLimits(List<Integer> userLevels) {
