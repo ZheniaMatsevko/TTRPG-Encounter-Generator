@@ -3,6 +3,8 @@ package com.example.backend.service.implementation;
 import com.example.backend.dto.MonsterActivitiesDto;
 import com.example.backend.dto.MonsterDto;
 import com.example.backend.dto.MonsterTacticsDto;
+import com.example.backend.dto.LootDto;
+
 import com.example.backend.dto.enums.EncounterDifficulty;
 import com.example.backend.dto.generation.Encounter;
 import com.example.backend.dto.generation.GenerationFilter;
@@ -27,6 +29,7 @@ public class EncounterGenerationService implements IEncounterGenerationService {
     private final IMonstersGenerationService monstersGenerationService;
     private final IMonsterActivitiesService monsterActivitiesService;
     private final IMonsterTacticsService monsterTacticsService;
+    private final ILootService lootService;
 
     @Override
     public Encounter generateEncounter(GenerationFilter generationFilter) {
@@ -75,7 +78,13 @@ public class EncounterGenerationService implements IEncounterGenerationService {
             encounter.setTactics(monsterTactics);
         }
 
-        //TODO generate Loot
+        if (generationFilter.isGenerateLoot()) {
+            float maxCR = calculateMaxCR(generatedMonstersToCount.keySet().stream().toList());
+            List<LootDto> loot = lootService.generateLootByCR(maxCR);
+            encounter.setLoots(loot);
+            log.info("Generated loot for encounter with max CR: {}", maxCR);
+        }
+
 
         return encounter;
     }
@@ -87,7 +96,12 @@ public class EncounterGenerationService implements IEncounterGenerationService {
 
         return uniqueTypes.size();
     }
-
+    private float calculateMaxCR(List<MonsterDto> monsters) {
+        return monsters.stream()
+                .map(MonsterDto::getCr)
+                .max(Float::compare)
+                .orElse(1.0f);
+    }
     private boolean isEmptyFilter(GenerationFilter generationFilter) {
         return (generationFilter.getFilters() == null || generationFilter.getFilters().isEmpty())
                 && (generationFilter.getCharactersLevels() == null || generationFilter.getCharactersLevels().isEmpty());
