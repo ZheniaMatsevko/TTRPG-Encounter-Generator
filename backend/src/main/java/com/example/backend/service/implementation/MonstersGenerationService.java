@@ -67,8 +67,20 @@ public class MonstersGenerationService implements IMonstersGenerationService {
 
         if (filtersWithoutNoneOrAll.isEmpty()) {
             boolean canWorkScenario0 = filtersWithNoneOrAll.stream().noneMatch(filterParam ->
-                    filterParam.getPropertyName().equals("size") && filterParam.getValue().equals("SMALL")
-                            && filterParam.getQuantity().getQuantityRequirement().equals(QuantityRequirement.NONE));
+                    (filterParam.getPropertyName().equals("size") && filterParam.getValue().equals("SMALL")
+                            && filterParam.getQuantity().getQuantityRequirement().equals(QuantityRequirement.NONE))
+            || (filterParam.getPropertyName().equals("size") && filterParam.getValue().equals("MEDIUM")
+                            && filterParam.getQuantity().getQuantityRequirement().equals(QuantityRequirement.ALL))
+            || (filterParam.getPropertyName().equals("size") && filterParam.getValue().equals("TINY")
+                            && filterParam.getQuantity().getQuantityRequirement().equals(QuantityRequirement.ALL))
+            || (filterParam.getPropertyName().equals("size") && filterParam.getValue().equals("LARGE")
+                            && filterParam.getQuantity().getQuantityRequirement().equals(QuantityRequirement.ALL))
+            || (filterParam.getPropertyName().equals("size") && filterParam.getValue().equals("HUGE")
+                            && filterParam.getQuantity().getQuantityRequirement().equals(QuantityRequirement.ALL))
+            || (filterParam.getPropertyName().equals("size") && filterParam.getValue().equals("GARGANTUAN")
+                            && filterParam.getQuantity().getQuantityRequirement().equals(QuantityRequirement.ALL))
+            || (filterParam.getPropertyName().equals("size") && filterParam.getValue().equals("VARIES")
+                            && filterParam.getQuantity().getQuantityRequirement().equals(QuantityRequirement.ALL)));
 
             return generateForNoneAndAllFilters(canWorkScenario0, numberOfMonsters, params);
         } else {
@@ -91,7 +103,6 @@ public class MonstersGenerationService implements IMonstersGenerationService {
 
         log.info("Generating monsters for scenario: {}", scenario);
         Map<MonsterDto, Integer> result;
-        scenario = 2;
 
         if (scenario == 0) {
             result = generateScenario0(numberOfMonsters, params);
@@ -296,8 +307,13 @@ public class MonstersGenerationService implements IMonstersGenerationService {
         Map<MonsterDto, Integer> result = new HashMap<>();
         int numberOfMonsters = presetNumberOfMonsters != 0 ? presetNumberOfMonsters : random.nextInt(3, 10);
         MonsterDto leader = new MonsterDto();
+        FilterParam typeFilter = params.stream()
+                .filter(param -> param.getPropertyName().equals("type") && param.getQuantity().getQuantityRequirement().equals(QuantityRequirement.ALL))
+                .findFirst()
+                .orElse(null);
+
         do {
-            Type randomType = getRandomType();
+            Type randomType = typeFilter != null ? Type.valueOf(typeFilter.getValue()) : getRandomType();
 
             CriteriaBuilder criteriaBuilder = entityManager.getCriteriaBuilder();
             CriteriaQuery<MonsterEntity> query = criteriaBuilder.createQuery(MonsterEntity.class);
@@ -354,7 +370,7 @@ public class MonstersGenerationService implements IMonstersGenerationService {
                 }
             }
 
-        } while (result.isEmpty());
+        } while (result.isEmpty() && typeFilter == null);
 
         return result;
     }
@@ -362,9 +378,13 @@ public class MonstersGenerationService implements IMonstersGenerationService {
     private Map<MonsterDto, Integer> generateScenario2(int presetNumberOfMonsters, List<FilterParam> params) {
         Map<MonsterDto, Integer> result = new HashMap<>();
         int numberOfMonsters = presetNumberOfMonsters == 0 ? 6 : presetNumberOfMonsters;
+        FilterParam habitatFilter = params.stream()
+                .filter(param -> param.getPropertyName().equals("habitat") && param.getQuantity().getQuantityRequirement().equals(QuantityRequirement.ALL))
+                .findFirst()
+                .orElse(null);
 
         do {
-            Habitat randomHabitat = getRandomHabitat();
+            Habitat randomHabitat = habitatFilter != null ? Habitat.valueOf(habitatFilter.getValue()) : getRandomHabitat();
 
             CriteriaBuilder criteriaBuilder = entityManager.getCriteriaBuilder();
             CriteriaQuery<MonsterEntity> query = criteriaBuilder.createQuery(MonsterEntity.class);
@@ -397,7 +417,7 @@ public class MonstersGenerationService implements IMonstersGenerationService {
 
                 result = findMonstersWithCrDifferenceUpTo2(crBuckets, numberOfMonsters);
             }
-        } while (result.isEmpty());
+        } while (result.isEmpty() && habitatFilter == null);
 
         return result;
     }
