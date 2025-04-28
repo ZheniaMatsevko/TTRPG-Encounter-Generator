@@ -49,6 +49,17 @@ public class LootController {
 
         return createdTactics;
     }
+    @GetMapping("/generate")
+    public List<LootDto> generateLootByCR(@RequestParam float challengeRating) {
+        log.info("Generating loot for CR: {}", challengeRating);
+        return lootService.generateLootByCR(challengeRating);
+    }
+
+    @PostMapping("/generate/multiple")
+    public List<LootDto> generateLootByMultipleCR(@RequestBody List<Float> challengeRatings) {
+        log.info("Generating loot for multiple CRs: {}", challengeRatings);
+        return lootService.generateLootByMultipleCR(challengeRatings);
+    }
 
     @GetMapping
     public List<LootDto> getAll() {
