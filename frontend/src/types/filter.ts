@@ -9,4 +9,22 @@ export enum FilterType {
     MONSTER_LOCATION = 'monster_location',
 }
 
-export type FilterValue = 'none' | 'any' | 'all';
+export type FilterOptions = {
+    Tactics: FilterDto[];
+    Habitats: FilterDto[];
+    Activities: FilterDto[];
+    Spellcaster: FilterDto[];
+    Lair: FilterDto[];
+    Legendary: FilterDto[];
+    Alignment: FilterDto[];
+    Tag: FilterDto[];
+    Size: FilterDto[];
+    Type: FilterDto[]
+}
+
+export type FilterDto = {
+    id?: any;
+    description: any;
+}
+
+export type FilterValue = 'none' | 'any' | 'all' | 'exact';

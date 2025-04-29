@@ -27,13 +27,14 @@ export default function TopMenu() {
 }
 
 function Header({path, text}: HeaderProps) {
+    //dark:text-white
     return (
         <Link to={path}
               className='
               flex w-fit font-["EB_Garamond"] text-[#262626]
               transition delay-50 duration-300 ease-in-out h-fit
               hover:scale-110
-              dark:text-white
+
               '>
             <h2>
                 {text}
@@ -43,9 +44,10 @@ function Header({path, text}: HeaderProps) {
 }
 
 function Logo({path, text}: HeaderProps) {
+    //dark:text-white
     return (
         <Link to={path} className='flex font-["Montserrat"] text-[#262626] font-extrabold h-fit'>
-            <h2 className='text-[#262626] dark:text-white'>
+            <h2 className='text-[#262626] '>
                 {text}
             </h2>
         </Link>
