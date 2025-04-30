@@ -1,9 +1,9 @@
-import {createContext} from "react";
-import {Filter} from "../../types/filter.ts";
+import React, {createContext} from "react";
+import {State} from "../../types/state.ts";
 
 const FilterContext = createContext<{
-    filters?: Filter[],
-    setFilters?:  React.Dispatch<React.SetStateAction<Filter[]>>
+    state?: State,
+    setState?:  React.Dispatch<React.SetStateAction<State>>
 }>({});
 
 export default FilterContext;

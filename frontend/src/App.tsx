@@ -12,11 +12,12 @@ import FilterContext from './elements/contexts/FilterContext.ts';
 
 function App() {
     const [filters, setFilters] = useState(new Array<Filter>);
+    //dark:bg-[#1E382A] dark:text-[#FEF7EC]
 
     return (
         <>
             <Router>
-                <div className="p-4 dark:bg-[#1E382A] dark:text-[#FEF7EC] w-full h-screen">
+                <div className="p-4  w-full h-screen">
                     <FilterContext.Provider value={{filters, setFilters}}>
                         <TopMenu/>
                         <Routes>

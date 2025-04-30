@@ -22,6 +22,7 @@ public class GenerationController {
     private final IEncounterGenerationService generationService;
 
     @PostMapping
+    @CrossOrigin(origins = "http://localhost:5173")
     public Encounter generateEncounter(@RequestBody @Valid GenerationFilter generationFilter, BindingResult bindingResult) {
         if (bindingResult.hasErrors()) {
             String message = ExceptionHelper.formErrorMessage(bindingResult);
