@@ -4,7 +4,7 @@ import FilterContext from "../contexts/FilterContext.ts";
 
 export function PlayersTable() {
     const [players, setPlayers] = useState(new Array<number>)
-    const [level, setLevel] = useState(0)
+    const [level, setLevel] = useState(1)
     const { state, setState } = useContext(FilterContext);
 
     useEffect(() => {
@@ -21,6 +21,8 @@ export function PlayersTable() {
                     type="number"
                     name='playerLevel'
                     value={level}
+                    min={1}
+                    max={30}
                     onChange={(e) => {
                         setLevel(parseInt(e.target.value, 10))
                     }}
