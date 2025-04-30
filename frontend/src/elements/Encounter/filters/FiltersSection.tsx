@@ -92,6 +92,16 @@ export default function FiltersSection() {
         setNumber('');
     };
 
+    function removeFilters(e: React.FormEvent) {
+        e.preventDefault();
+
+        setFilterParams([]);
+        if (state && setState) {
+            state.generationRequest.filters = [];
+            setState(state);
+        }
+    }
+
 
     return (
         <div className="p-4">
@@ -146,6 +156,23 @@ export default function FiltersSection() {
                         </select>
                     </div>
 
+                    <div className={quantityRequirement === QuantityRequirement.EXACT ? "" : "hidden"}>
+                        <label className="block mb-1">Number of monsters</label>
+                        <input
+                            type="number"
+                            value={number}
+                            onChange={(e) => setNumber(e.target.value)}
+                            className="w-full p-2 border rounded"
+                            required={quantityRequirement === QuantityRequirement.EXACT}
+                        >
+                            {/*{Object.values(QuantityRequirement).map((req) => (*/}
+                            {/*    <option key={req} value={req}>*/}
+                            {/*        {req}*/}
+                            {/*    </option>*/}
+                            {/*))}*/}
+                        </input>
+                    </div>
+
                 </div>
 
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
@@ -159,6 +186,7 @@ export default function FiltersSection() {
                     <button
                         type="button"
                         className="mt-4 px-4 py-2 bg-red-500 text-white rounded hover:bg-red-700 transition duration-300 ease-in-out"
+                        onClick={removeFilters}
                     >
                         Clear Filters
                     </button>
@@ -175,6 +203,7 @@ export default function FiltersSection() {
                             field={filterParam.propertyName}
                             value={filterParam.value}
                             quantity={filterParam.quantity.quantityRequirement}
+                            exact={filterParam.quantity.number}
                             key={index}
                         />
                     ))}

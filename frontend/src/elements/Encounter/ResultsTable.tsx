@@ -3,7 +3,7 @@ import FilterContext from "../contexts/FilterContext.ts";
 import {FilterParam} from "../../dto/filterDto.ts";
 
 export default function ResultsTable() {
-    const { state, setState } = useContext(FilterContext)
+    const { state } = useContext(FilterContext)
 
     const [generationResult, setGenerationResult] = useState({} as any)
 

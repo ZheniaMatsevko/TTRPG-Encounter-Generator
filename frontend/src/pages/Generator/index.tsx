@@ -8,6 +8,7 @@ import {config} from "../../config.ts";
 import {FilterDto} from "../../types/filter.ts";
 import {getAvailableValuesByField} from "../../util/util.ts";
 import {Monster} from "../../types/monster.ts";
+import {PlayersTable} from "../../elements/Encounter/PlayersTable.tsx";
 
 export default function Generator() {
 
@@ -79,38 +80,7 @@ export default function Generator() {
             <FilterContext.Provider value={{state, setState}}>
                 {/* section for player characters, and generation settins */}
                 <div className="w-1/4 border-r-1">
-                    {/*<div className="player-adder-container">*/}
-                    {/*    <h2>Player Characters</h2>*/}
-                    {/*    example of AN instance of added player*/}
-                    {/*    <div className="player-instance-container">*/}
-                    {/*        <label>Level</label>*/}
-                    {/*        <select name="player-level-select">*/}
-                    {/*        {[...Array(20).keys()].map((lvl) => (*/}
-                    {/*        <option key={lvl + 1}>{lvl + 1}</option>*/}
-                    {/*        ))}*/}
-                    {/*        </select>*/}
-                    {/*        <button>-</button>*/}
-                    {/*    </div>*/}
-                    {/*</div>*/}
-                    {/*/!*the Add character button*!/*/}
-                    {/*<div className="addchar-btn-container">*/}
-                    {/*    <button>+</button>*/}
-                    {/*    <label>Add character</label>*/}
-                    {/*</div>*/}
-                    {/*/!*generation settings*!/*/}
-                    {/*<div className="generation-settings-container">*/}
-                    {/*    <h2>Generation Settings</h2>*/}
-                    {/*    {[*/}
-                    {/*      "Monster tactics",*/}
-                    {/*      "Monster loot",*/}
-                    {/*      "Monster activities",*/}
-                    {/*    ].map((setting, index) => (*/}
-                    {/*      <div key={index} className="setting-option">*/}
-                    {/*        <input type="checkbox" />*/}
-                    {/*        <label>{setting}</label>*/}
-                    {/*      </div>*/}
-                    {/*    ))}*/}
-                    {/*</div>*/}
+                    <PlayersTable/>
                 </div>
 
                 {/* section for filters choose */}
