@@ -204,7 +204,7 @@ export default function FiltersSection() {
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                     <button
                         type="submit"
-                        className="mt-4 px-4 py-2 bg-blue-500 text-white rounded hover:bg-blue-600 transition duration-300 ease-in-out"
+                        className="mt-4 px-4 py-2 bg-green-500 text-white rounded hover:bg-green-600 transition duration-300 ease-in-out"
                     >
                         Add Filter
                     </button>
