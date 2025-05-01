@@ -1,4 +1,4 @@
-import {useContext, useEffect, useState} from "react";
+import React, {useContext, useEffect, useState} from "react";
 import FilterContext from "../contexts/FilterContext.ts";
 
 
@@ -63,6 +63,59 @@ export function PlayersTable() {
                     </div>
                 ))}
             </div>
+
+
+            <div className="m-4">
+                <hr/>
+                <h3 className='text-2xl font-semibold mb-2 mt-2'>Generation settings</h3>
+                <div className="grid grid-cols-1 md:grid-cols-3 gap-4 form-check mt-4 mb-2">
+                    <label className="form-check-label col-span-2">Generate monster tactics</label>
+                    <input
+                        type="checkbox"
+                        className="form-check-input col-span-1"
+                        name="tactics"
+                        onChange={e => {
+                            if (state && setState) {
+                                state.monsterTactics = e.target.checked;
+                                setState(state)
+                            }
+                        }}
+                    />
+
+                </div>
+                <div className="grid grid-cols-1 md:grid-cols-3 gap-4 form-check mt-4 mb-2">
+                    <label className="form-check-label col-span-2">Generate monster activity</label>
+                    <input
+                        type="checkbox"
+                        className="form-check-input col-span-1"
+                        name="activity"
+                        onChange={e => {
+                            if (state && setState) {
+                                state.monsterActivity = e.target.checked;
+                                setState(state)
+                            }
+                        }}
+                    />
+
+                </div>
+                <div className="grid grid-cols-1 md:grid-cols-3 gap-4 form-check mt-4 mb-2">
+                    <label className="form-check-label col-span-2">Generate monster loot</label>
+                    <input
+                        type="checkbox"
+                        className="form-check-input col-span-1"
+                        name="loots"
+                        onChange={e => {
+                            if (state && setState) {
+                                state.monsterLoot = e.target.checked;
+                                setState(state)
+                            }
+                        }}
+                    />
+
+                </div>
+            </div>
+
+
         </div>
     );
 }

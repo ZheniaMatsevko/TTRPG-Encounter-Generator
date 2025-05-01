@@ -24,6 +24,7 @@ export default function Generator() {
             Spellcaster: [],
             Size: [],
             Type: [],
+            Name: []
         },
         generationRequest: {
 
@@ -51,6 +52,10 @@ export default function Generator() {
         const habitats = [...new Set(monstersResponse.data.map((x: any) => x.habitats).flat())];
 
 
+        state.monsterActivity = false;
+        state.monsterLoot = false;
+        state.monsterTactics = false;
+
         state.monsters = monstersResponse.data;
         state.filterOptions.Habitats = habitats.map(x => {
             return {
@@ -67,6 +72,7 @@ export default function Generator() {
         state.filterOptions.Tag = getAvailableValuesByField(state.monsters, 'tag' as keyof Monster);
         state.filterOptions.Size = getAvailableValuesByField(state.monsters, 'size' as keyof Monster);
         state.filterOptions.Type = getAvailableValuesByField(state.monsters, 'type' as keyof Monster);
+        state.filterOptions.Name = getAvailableValuesByField(state.monsters, 'name' as keyof Monster);
         return state;
     }
 

@@ -12,13 +12,10 @@ import java.util.List;
 public class MonsterDto {
     private Long id;
 
-    @NotBlank
     private String name;
 
-    @NotBlank
     private Size size;
 
-    @NotBlank
     private Type type;
 
     private Tag tag;

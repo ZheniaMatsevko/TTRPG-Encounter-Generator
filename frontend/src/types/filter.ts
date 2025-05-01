@@ -19,7 +19,8 @@ export type FilterOptions = {
     Alignment: FilterDto[];
     Tag: FilterDto[];
     Size: FilterDto[];
-    Type: FilterDto[]
+    Type: FilterDto[];
+    Name: FilterDto[];
 }
 
 export type FilterDto = {

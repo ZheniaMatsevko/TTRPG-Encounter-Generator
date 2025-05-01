@@ -17,6 +17,8 @@ export default function FiltersSection() {
     const [availableValues, setAvailableValues] = useState<string[]>(['value']);
     const [value, setValue] = useState<string>('value');
 
+    const [monsterAmount, setMonsterAmount] = useState<number>(0)
+
     const [quantityRequirement, setQuantityRequirement] = useState<QuantityRequirement>(QuantityRequirement.NONE);
     const [number, setNumber] = useState<string>('');
 
@@ -37,6 +39,13 @@ export default function FiltersSection() {
             setValue(state.filterOptions[propertyName as keyof FilterOptions].map(x => String(x.description))[0]);
         }
     }, [propertyName, setAvailableValues, state, state?.filterOptions]);
+
+    useEffect(() => {
+        if (state && setState) {
+            state.monsterAmount = monsterAmount;
+            setState(state)
+        }
+    }, [monsterAmount]);
 
     useEffect(() => {
         if (state && setState) {
@@ -106,8 +115,25 @@ export default function FiltersSection() {
     return (
         <div className="p-4">
             <h1 className="text-3xl font-bold mb-4">Filters</h1>
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mb-4">
+                <label className="block mb-1">Amount of monsters</label>
+                <input
+                    className="border-1 rounded-xl h-8 text-center"
 
-            <form onSubmit={handleSubmit} className="mb-4">
+                    type="number"
+                    name='monsterAmount'
+                    value={monsterAmount}
+                    min={0}
+                    max={30}
+                    onChange={(e) => {
+                        setMonsterAmount(parseInt(e.target.value, 10))
+                    }}
+                />
+            </div>
+
+            <hr/>
+
+            <form onSubmit={handleSubmit} className="mb-4 mt-4">
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                     <div>
                         <label className="block mb-1">Property Name</label>
@@ -209,7 +235,6 @@ export default function FiltersSection() {
                     ))}
                 </ul>
             </div>
-
 
         </div>
     );
